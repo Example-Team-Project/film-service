@@ -1,6 +1,5 @@
 quarkus:
 
-
 #  When @ApplicationScope is not used, this setting sets the root url for the whole application.
 #  eg: a @Path("/endpoint") would be /dvd/endpoint when this is set
 #  resteasy-reactive:
@@ -14,9 +13,18 @@ quarkus:
     reactive:
       url: vertx-reactive:postgresql://localhost:15432/dvdrental
 
+    metrics:
+      enabled: true
+  log:
+    # Used this for logging parameters of the queries (together with quarkus.hibernate-orm.log.bind-parameters)
+    min-level: TRACE
   hibernate-orm:
-    # hmmm ... what?
+    physical-naming-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+
+# hmmm ... earlier the quarkus.hibernate-orm.physical-naming-strategy was not working and used the unsoppoerted-properties to set the strategy
 #    unsupported-properties:
 #      "hibernate.physical_naming_strategy": org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
     log:
+      # Used this for logging parameters of the queries (together with quarkus.log.min-level)
+      bind-parameters: true
       sql: true
