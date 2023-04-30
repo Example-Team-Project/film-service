@@ -1,0 +1,22 @@
+quarkus:
+
+
+#  When @ApplicationScope is not used, this setting sets the root url for the whole application.
+#  eg: a @Path("/endpoint") would be /dvd/endpoint when this is set
+#  resteasy-reactive:
+#    path: /dvd
+
+  datasource:
+    db-kind: postgresql
+    username: postgres
+    password: 12345
+
+    reactive:
+      url: vertx-reactive:postgresql://localhost:15432/dvdrental
+
+  hibernate-orm:
+    # hmmm ... what?
+#    unsupported-properties:
+#      "hibernate.physical_naming_strategy": org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+    log:
+      sql: true
