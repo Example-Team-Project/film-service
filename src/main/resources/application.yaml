@@ -1,5 +1,6 @@
 quarkus:
 
+
 #  When @ApplicationScope is not used, this setting sets the root url for the whole application.
 #  eg: a @Path("/endpoint") would be /dvd/endpoint when this is set
 #  resteasy-reactive:
@@ -28,3 +29,5 @@ quarkus:
       # Used this for logging parameters of the queries (together with quarkus.log.min-level)
       bind-parameters: true
       sql: true
+  http:
+    port: 18180

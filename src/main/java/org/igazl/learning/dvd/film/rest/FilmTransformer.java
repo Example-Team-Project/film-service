@@ -8,6 +8,8 @@ public class FilmTransformer {
 
     public Film transform(FilmEntity film) {
 
+        System.out.println(film.actors);
+
         return new Film(
                 film.id,
                 film.title,
@@ -19,7 +21,8 @@ public class FilmTransformer {
                 film.length,
                 film.replacementCost,
                 film.rating,
-                film.lastUpdate
+                film.lastUpdate,
+                film.actors.stream().map(filmActor -> new Actor(filmActor.pk.actorId, filmActor.lastUpdate)).toList()
         );
     }
 

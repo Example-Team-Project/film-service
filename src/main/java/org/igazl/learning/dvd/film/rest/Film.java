@@ -4,6 +4,7 @@ import org.igazl.learning.dvd.film.common.model.MpaaRating;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public record Film(
         Long id,
@@ -16,5 +17,6 @@ public record Film(
         Integer length,
         BigDecimal replacementCost,
         MpaaRating rating,
-        LocalDateTime lastUpdate
+        LocalDateTime lastUpdate,
+        List<Actor> actors
 ) { };

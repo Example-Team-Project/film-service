@@ -31,7 +31,7 @@ public class FilmService {
     @WithSession
     public Uni<List<Film>> getAll(int page, int size) {
         return FilmEntity
-                .findAll()
+                .findAllAndFetch()
                 .page(Page.of(page, size))
                 .list()
                 .map(this::transformFilms);
@@ -44,7 +44,7 @@ public class FilmService {
     }
 
     private static Uni<FilmEntity> findById(Long filmId) {
-        return FilmEntity.findById(filmId);
+        return FilmEntity.findAndFetch(filmId);
     }
 
     private List<Film> transformFilms(List<PanacheEntityBase> films) {
