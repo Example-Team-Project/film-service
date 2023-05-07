@@ -1,5 +1,6 @@
 package org.igazl.learning.dvd.film.service;
 
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
@@ -17,6 +18,7 @@ public class ActorService {
         this.actorServiceClient = actorServiceClient;
     }
 
+    @WithSpan
     public Uni<List<org.igazl.learning.dvd.film.rest.Actor>> getActors(List<Long> actorIds) {
         return actorServiceClient.getActors(actorIds)
                 .map(actors -> actors.stream().map(this::transform).toList());
