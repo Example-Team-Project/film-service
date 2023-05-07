@@ -31,3 +31,13 @@ quarkus:
       sql: true
   http:
     port: 18180
+
+  rest-client:
+    logging:
+      scope: request-response
+      body-limit: 1024
+#    This can also be used but it has to match with the FQDN of the interface
+#    "org.igazl.learning.dvd.film.client.actor.ActorServiceClient":
+#    with @RegisterRestClient(configKey = "") we can use shorter client names
+    actor-service-client:
+      url: http://localhost:18181/api

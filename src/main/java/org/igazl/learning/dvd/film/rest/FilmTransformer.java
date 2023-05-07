@@ -3,13 +3,12 @@ package org.igazl.learning.dvd.film.rest;
 import jakarta.enterprise.context.ApplicationScoped;
 import org.igazl.learning.dvd.film.dao.FilmEntity;
 
+import java.util.List;
+
 @ApplicationScoped
 public class FilmTransformer {
 
-    public Film transform(FilmEntity film) {
-
-        System.out.println(film.actors);
-
+    public Film transform(FilmEntity film, List<Actor> actors) {
         return new Film(
                 film.id,
                 film.title,
@@ -22,7 +21,7 @@ public class FilmTransformer {
                 film.replacementCost,
                 film.rating,
                 film.lastUpdate,
-                film.actors.stream().map(filmActor -> new Actor(filmActor.pk.actorId, filmActor.lastUpdate)).toList()
+                actors
         );
     }
 

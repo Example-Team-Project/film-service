@@ -39,7 +39,7 @@ public class FilmEntity extends PanacheEntityBase {
     @JoinColumn(name = "film_id")
     public List<FilmActor> actors = List.of();
 
-    public static PanacheQuery<PanacheEntityBase> findAllAndFetch() {
+    public static PanacheQuery<FilmEntity> findAllAndFetch() {
         return find( "select f from FilmEntity f left join fetch f.actors a");
     }
 
