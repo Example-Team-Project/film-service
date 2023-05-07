@@ -1,11 +1,19 @@
 quarkus:
 
+  application:
+    name: film-service
 
 #  When @ApplicationScope is not used, this setting sets the root url for the whole application.
 #  eg: a @Path("/endpoint") would be /dvd/endpoint when this is set
 #  resteasy-reactive:
 #    path: /dvd
 
+  otel:
+    exporter:
+      otlp:
+        traces:
+          endpoint: http://localhost:4317
+  #          headers: authorization=Bearer my_secret
   datasource:
     db-kind: postgresql
     username: postgres
@@ -17,6 +25,9 @@ quarkus:
     metrics:
       enabled: true
   log:
+    console:
+      # Added to display trace and span IDs
+      format: "%d{HH:mm:ss} %-5p traceId=%X{traceId}, parentId=%X{parentId}, spanId=%X{spanId}, sampled=%X{sampled} [%c{2.}] (%t) %s%e%n"
     # Used this for logging parameters of the queries (together with quarkus.hibernate-orm.log.bind-parameters)
     min-level: TRACE
   hibernate-orm:
