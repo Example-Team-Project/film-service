@@ -3,17 +3,6 @@ quarkus:
   application:
     name: film-service
 
-#  When @ApplicationScope is not used, this setting sets the root url for the whole application.
-#  eg: a @Path("/endpoint") would be /dvd/endpoint when this is set
-#  resteasy-reactive:
-#    path: /dvd
-
-  otel:
-    exporter:
-      otlp:
-        traces:
-          endpoint: http://localhost:4317
-  #          headers: authorization=Bearer my_secret
   datasource:
     db-kind: postgresql
     username: postgres
@@ -24,24 +13,45 @@ quarkus:
 
     metrics:
       enabled: true
+
+  hibernate-orm:
+    physical-naming-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+
+    # hmmm ... earlier the quarkus.hibernate-orm.physical-naming-strategy was not working and used the unsoppoerted-properties to set the strategy
+    #    unsupported-properties:
+    #      "hibernate.physical_naming_strategy": org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+    log:
+      # Used this for logging parameters of the queries (together with quarkus.log.min-level)
+      bind-parameters: true
+      sql: true
+
+  http:
+    port: 18180
+
   log:
     console:
       # Added to display trace and span IDs
       format: "%d{HH:mm:ss} %-5p traceId=%X{traceId}, parentId=%X{parentId}, spanId=%X{spanId}, sampled=%X{sampled} [%c{2.}] (%t) %s%e%n"
     # Used this for logging parameters of the queries (together with quarkus.hibernate-orm.log.bind-parameters)
     min-level: TRACE
-  hibernate-orm:
-    physical-naming-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+    handler:
+      gelf:
+        enabled: true
+        host: localhost
+        port: 12201
+        include-full-mdc: true
+        additional-field:
+          applicationName:
+            value: ${quarkus.application.name}
+            type: string
 
-# hmmm ... earlier the quarkus.hibernate-orm.physical-naming-strategy was not working and used the unsoppoerted-properties to set the strategy
-#    unsupported-properties:
-#      "hibernate.physical_naming_strategy": org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
-    log:
-      # Used this for logging parameters of the queries (together with quarkus.log.min-level)
-      bind-parameters: true
-      sql: true
-  http:
-    port: 18180
+
+  otel:
+    exporter:
+      otlp:
+        traces:
+          endpoint: http://localhost:4317
+  #          headers: authorization=Bearer my_secret
 
   rest-client:
     logging:
@@ -52,3 +62,8 @@ quarkus:
 #    with @RegisterRestClient(configKey = "") we can use shorter client names
     actor-service-client:
       url: http://localhost:18181/api
+
+#  When @ApplicationScope is not used, this setting sets the root url for the whole application.
+#  eg: a @Path("/endpoint") would be /dvd/endpoint when this is set
+#  resteasy-reactive:
+#    path: /dvd

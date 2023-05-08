@@ -11,6 +11,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import org.igazl.learning.dvd.film.service.FilmService;
+import org.jboss.logging.Logger;
 import org.jboss.resteasy.reactive.RestPath;
 
 import java.util.List;
@@ -21,8 +22,11 @@ public class FilmResource {
 
     private final FilmService filmService;
 
-    public FilmResource(FilmService filmService) {
+    private final Logger logger;
+
+    public FilmResource(FilmService filmService, Logger logger) {
         this.filmService = filmService;
+        this.logger = logger;
     }
 
     @GET
@@ -38,6 +42,7 @@ public class FilmResource {
             @Max(20)
             int size
     ) {
+        logger.infov("The film list was called to display page: {0} and size: {1}", page, size);
         return filmService.getAll(page, size);
     }
 
