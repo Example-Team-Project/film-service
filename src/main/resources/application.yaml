@@ -67,3 +67,24 @@ quarkus:
 #  eg: a @Path("/endpoint") would be /dvd/endpoint when this is set
 #  resteasy-reactive:
 #    path: /dvd
+
+
+## OIDC Configuration
+#  oidc:
+#    auth-server-url: http://localhost:18081/realms/quarkus
+#    client-id: quarkus-client
+#    credentials:
+#      secret: A90Olj3Rop6jPHNa2tJncBw1QlGgtwcs
+#    tls:
+#      verification: none
+#
+#  # Enable Policy Enforcement
+#  keycloak:
+#    policy-enforcer:
+#      enable: true
+#
+#  # Tell Dev Services for Keycloak to import the realm file
+#  # This property is not effective when running the application in JVM or Native modes
+#    devservices:
+#      realm-path:
+#        quarkus-realm.json

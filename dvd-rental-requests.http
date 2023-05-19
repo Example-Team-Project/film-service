@@ -1,0 +1,58 @@
+GET http://localhost:8980/products
+Content-Type: application/json
+
+###
+
+GET http://localhost:18180/api/v1/films/v2
+Content-Type: application/json
+
+###
+
+GET http://localhost:18180/api/v1/films?page=1&size=2
+Content-Type: application/json
+
+###
+
+GET http://localhost:18180/api/v1/example
+Content-Type: application/json
+
+###
+
+GET http://localhost:18180/api/v1/films
+Content-Type: application/json
+
+
+###
+
+GET http://localhost:18180/api/v1/films/133
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJaXzg2UlhKV0ptMmlkVW5rMUg4WkVXQU1zNm4tZ3c5ZTFoVzk2X25OOVFrIn0.eyJleHAiOjE2ODM3NTI0MDAsImlhdCI6MTY4Mzc1MjEwMCwianRpIjoiMmRjNjA5YzAtOGE2NS00NDI1LWE5NTctNWYxYTYwYmNjYmViIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDoxODA4MS9yZWFsbXMvcXVhcmt1cyIsInN1YiI6ImViNDEyM2EzLWI3MjItNDc5OC05YWY1LTg5NTdmODIzNjU3YSIsInR5cCI6IkJlYXJlciIsImF6cCI6InF1YXJrdXMtY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6IjY1NjQ2ODU0LTJjMjMtNGRiMy04MzdiLTA4ZjQ0MTRhMTg3YyIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsidXNlciJdfSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiNjU2NDY4NTQtMmMyMy00ZGIzLTgzN2ItMDhmNDQxNGExODdjIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhbGljZSJ9.jlsYDaXyu80BxXLAmN9itDN95n1dXP8YJjSeuyT9VzG2lfxHtgfwhUmITXYN-_Wjr7U7lcUNJV8y6K8i39L4gaz-4ok-hitG9QMWvNwboGXhn3NoAN9pu73R5Wk9d8exF1Ub27LYGkP1yWsJiimcffxBdwr4lAil1vvjf2bF8EKQ3_WVmHavJbBieYYjzBn7KDpXFSLch8Kvn4w_iyNeUZKtPBh1JqnvXFTfHNePICVoFi1hwLkPyz9NauDaMV_8SC_7YuSp22dqpQHaedZj_UHvujNNfEfBmjsQ-xWGWnkbaK1pWyCzEA3mnl0NMj3_Od_olguy3pSeZNGz6JYNPA
+
+###
+
+GET http://localhost:18182/api/v1/inventories/133
+Content-Type: application/json
+
+###
+
+GET http://localhost:18181/api/v1/actors?actorIds=1&actorIds=2&actorIds=3&actorIds=4&actorIds=5
+Content-Type: application/json
+
+###
+
+# curl -X POST http://localhost:18081/realms/quarkus/protocol/openid-connect/token --user backend-service:secret -H 'content-type: application/x-www-form-urlencoded' -d 'username=alice&password=alice&grant_type=password'
+POST http://localhost:18081/realms/quarkus/protocol/openid-connect/token
+Authorization: Basic backend-service secret
+Content-Type: application/x-www-form-urlencoded
+
+username=alice&password=alice&grant_type=password
+
+###
+
+POST http://localhost:18081/realms/quarkus/protocol/openid-connect/token
+Authorization: Basic quarkus-client A90Olj3Rop6jPHNa2tJncBw1QlGgtwcs
+Content-Type: application/x-www-form-urlencoded
+
+username=alice&password=alice&grant_type=password
+
+###
